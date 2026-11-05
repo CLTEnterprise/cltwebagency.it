@@ -56,6 +56,33 @@ document.querySelectorAll('[data-words]').forEach(function (el) {
   }).observe(cta);
 })();
 
+// Progetti: frecce avanti e indietro (col dito si scorre da soli).
+(function () {
+  var track = document.getElementById('proj-track');
+  var frecce = document.querySelectorAll('.arrow');
+  if (!track || !frecce.length) return;
+  function passo() {
+    var card = track.querySelector('.proj');
+    return card ? card.getBoundingClientRect().width + 16 : track.clientWidth * .8;
+  }
+  function aggiorna() {
+    var max = track.scrollWidth - track.clientWidth - 2;
+    frecce[0].disabled = track.scrollLeft <= 2;
+    frecce[1].disabled = track.scrollLeft >= max;
+  }
+  frecce.forEach(function (b) {
+    b.addEventListener('click', function () {
+      track.scrollBy({ left: passo() * Number(b.dataset.dir), behavior: 'smooth' });
+    });
+  });
+  track.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); track.scrollBy({ left: passo() * (e.key === 'ArrowRight' ? 1 : -1), behavior: 'smooth' }); }
+  });
+  track.addEventListener('scroll', function () { requestAnimationFrame(aggiorna); }, { passive: true });
+  window.addEventListener('resize', aggiorna);
+  aggiorna();
+})();
+
 // Loghi sparsi: ognuno galleggia con un suo tempo.
 document.querySelectorAll('.scatter--cloud .chip').forEach(function (c, i) { c.style.setProperty('--n', i); });
 

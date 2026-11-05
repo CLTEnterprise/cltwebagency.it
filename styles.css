@@ -130,6 +130,45 @@ h3 { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.
 .pill--outline-light::before { background: var(--bianco); }
 .pill--outline-light:hover, .pill--outline-light:focus-visible { color: var(--ink); }
 
+/* 2b. Progetti: loghi che scorrono all'infinito + card a scorrimento */
+.progetti { overflow: hidden; }
+.progetti__head { display: flex; align-items: end; justify-content: space-between; gap: 24px 48px; flex-wrap: wrap; margin-bottom: 40px; }
+.progetti__head .lead { margin-top: 20px; }
+.arrows { display: flex; gap: 10px; }
+.arrow { width: 56px; height: 56px; border: 0; border-radius: 50%; display: grid; place-items: center; background: var(--ink); color: var(--bianco); cursor: pointer; transition: background-color .25s, translate .2s var(--ease), opacity .25s; }
+.arrow svg { width: 24px; height: 24px; }
+.arrow:hover { background: var(--blu); }
+.arrow:active { translate: 0 1px; }
+.arrow:disabled { opacity: .25; cursor: default; background: var(--ink); }
+
+.marquee { --gap: 14px; margin-bottom: 48px; overflow: hidden; }
+.marquee__track { display: flex; gap: var(--gap); width: max-content; animation: scorri 46s linear infinite; }
+.marquee:hover .marquee__track { animation-play-state: paused; }
+@keyframes scorri { to { translate: calc(-50% - var(--gap) / 2) 0; } }
+.marquee__tile { flex: none; height: 112px; padding: 16px 26px; background: var(--bianco); border-radius: var(--r-m); display: grid; place-items: center; }
+.marquee__tile img { height: 80px; width: auto; max-width: 220px; object-fit: contain; }
+.marquee__tile--full { padding: 0; overflow: hidden; background: var(--bg); }
+.marquee__tile--full img { height: 112px; max-width: none; }
+
+.proj-track { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(280px, 330px); gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter); scroll-padding-inline: var(--gutter); overscroll-behavior-x: contain; padding-bottom: 8px; scrollbar-width: none; }
+.proj-track::-webkit-scrollbar { display: none; }
+.proj-track:focus-visible { outline-offset: 6px; border-radius: var(--r-l); }
+.proj { scroll-snap-align: start; background: var(--bianco); border-radius: var(--r-l); padding: 14px 14px 24px; display: grid; grid-template-rows: auto auto 1fr; gap: 14px; align-content: start; transition: translate .35s var(--ease); }
+.proj:hover { translate: 0 -6px; }
+.proj__media { position: relative; aspect-ratio: 4 / 3; border-radius: var(--r-m); background: var(--chiaro); overflow: hidden; }
+.proj__media img { position: absolute; inset: 14%; width: 72%; height: 72%; object-fit: contain; transition: scale .5s var(--ease); }
+.proj:hover .proj__media img { scale: 1.05; }
+.proj__media--dark { background: var(--bg); }
+.proj__media--dark img { inset: 0; width: 100%; height: 100%; }
+.proj h3 { font-size: 22px; padding: 0 10px; }
+.proj__tags { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 10px; align-content: start; }
+.proj__tags li { background: var(--chiaro); border-radius: 999px; padding: 6px 12px; font-size: 14px; font-weight: 600; line-height: 1.3; }
+.proj--more { background: var(--blu); color: var(--bianco); padding: 32px; align-content: center; gap: 16px; grid-template-rows: none; }
+.proj--more h3 { padding: 0; font-size: 26px; color: var(--bianco); }
+.proj--more p { color: #D6E4F0; }
+.proj--more .pill { justify-self: start; }
+.proj__emo { font-size: 44px; line-height: 1; }
+
 /* 3. Soluzioni AI: la scena blu notte */
 .ai { padding: 0 12px; }
 .ai__panel { background: var(--notte); color: var(--bianco); border-radius: var(--r-l); padding: clamp(80px, 9vw, 120px) 0; }
@@ -238,7 +277,7 @@ html body.wa-on .iubenda-tp-btn.iubenda-cs-preferences-link[data-tp-float][data-
     @keyframes assesta { from { transform: scale(1.14); } to { transform: scale(1); } }
   }
 }
-@media (prefers-reduced-motion: reduce) { .hero__leo img { animation: none; } html { scroll-behavior: auto; } }
+@media (prefers-reduced-motion: reduce) { .marquee { overflow-x: auto; } .marquee__track { animation: none; } .hero__leo img { animation: none; } html { scroll-behavior: auto; } }
 
 /* Tablet */
 @media (max-width: 1024px) {
@@ -246,6 +285,7 @@ html body.wa-on .iubenda-tp-btn.iubenda-cs-preferences-link[data-tp-float][data-
   .hero__leo { aspect-ratio: 1; max-height: 520px; }
   .head { grid-template-columns: 1fr; }
   .services { grid-template-columns: 1fr; }
+  .proj-track { grid-auto-columns: minmax(280px, 44%); }
   .ai__cards { grid-template-columns: 1fr 1fr; }
   .split__media { max-height: 480px; }
   .about__photo { max-width: 560px; }
@@ -276,6 +316,11 @@ html body.wa-on .iubenda-tp-btn.iubenda-cs-preferences-link[data-tp-float][data-
   .labs__logo img { height: 60px; }
   .form { padding: 22px; }
   .price { grid-template-columns: 1fr; gap: 20px; }
+  .proj-track { grid-auto-columns: 82%; }
+  .marquee__tile { height: 88px; padding: 12px 18px; }
+  .marquee__tile img { height: 62px; }
+  .marquee__tile--full img { height: 88px; }
+  .arrow { width: 48px; height: 48px; }
   .price__actions { grid-template-columns: 1fr; }
   html body .iubenda-tp-btn.iubenda-cs-preferences-link[data-tp-float][data-tp-float="bottom-right"] { right: 12px !important; bottom: 0 !important; }
   html body.wa-on .iubenda-tp-btn.iubenda-cs-preferences-link[data-tp-float][data-tp-float="bottom-right"] { bottom: 74px !important; }
