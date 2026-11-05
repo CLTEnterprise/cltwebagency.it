@@ -166,7 +166,7 @@ h3 { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.
 .proj--more { background: var(--blu); color: var(--bianco); padding: 32px; align-content: center; gap: 16px; grid-template-rows: none; }
 .proj--more h3 { padding: 0; font-size: 26px; color: var(--bianco); }
 .proj--more p { color: #D6E4F0; }
-.proj--more .pill { justify-self: start; }
+.proj--more .pill { justify-self: stretch; white-space: normal; text-align: center; line-height: 1.25; }
 .proj__emo { font-size: 44px; line-height: 1; }
 
 /* 3. Soluzioni AI: la scena blu notte */
