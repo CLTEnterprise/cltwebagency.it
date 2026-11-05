@@ -147,8 +147,8 @@ h3 { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.
 @keyframes scorri { to { translate: calc(-50% - var(--gap) / 2) 0; } }
 .marquee__tile { flex: none; height: 112px; padding: 16px 26px; background: var(--bianco); border-radius: var(--r-m); display: grid; place-items: center; }
 .marquee__tile img { height: 80px; width: auto; max-width: 220px; object-fit: contain; }
-.marquee__tile--full { padding: 0; overflow: hidden; background: var(--bg); }
-.marquee__tile--full img { height: 112px; max-width: none; }
+.marquee__tile--full { padding: 0; overflow: hidden; background: var(--bg); width: 112px; display: block; }
+.marquee__tile--full img { width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: center; }
 
 .proj-track { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(280px, 330px); gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding-inline: 12px; scroll-padding-inline: 12px; overscroll-behavior-x: contain; padding-bottom: 8px; scrollbar-width: none; }
 .proj-track::-webkit-scrollbar { display: none; }
@@ -320,7 +320,7 @@ html body.wa-on .iubenda-tp-btn.iubenda-cs-preferences-link[data-tp-float][data-
   .proj { scroll-snap-align: center; }
   .marquee__tile { height: 88px; padding: 12px 18px; }
   .marquee__tile img { height: 62px; }
-  .marquee__tile--full img { height: 88px; }
+  .marquee__tile--full { width: 88px; }
   .arrow { width: 48px; height: 48px; }
   .price__actions { grid-template-columns: 1fr; }
   html body .iubenda-tp-btn.iubenda-cs-preferences-link[data-tp-float][data-tp-float="bottom-right"] { right: 12px !important; bottom: 0 !important; }
