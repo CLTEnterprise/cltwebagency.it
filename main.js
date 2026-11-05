@@ -48,12 +48,23 @@ document.querySelectorAll('[data-words]').forEach(function (el) {
   var cta = document.getElementById('hero-cta');
   var fab = document.querySelector('.wa-float');
   if (!cta || !fab) return;
-  function mostra(si) { fab.classList.toggle('is-on', si); fab.tabIndex = si ? 0 : -1; }
+  function mostra(si) { fab.classList.toggle('is-on', si); fab.tabIndex = si ? 0 : -1; document.body.classList.toggle('wa-on', si); }
   if (!('IntersectionObserver' in window)) { mostra(true); return; }
   new IntersectionObserver(function (voci) {
     var v = voci[0];
     mostra(!v.isIntersecting && v.boundingClientRect.top < 0);
   }).observe(cta);
+})();
+
+// Privacy e cookie: piccolo menu che si apre dal bottone flottante.
+(function () {
+  var btn = document.querySelector('.legal-float__btn');
+  var menu = document.getElementById('legal-menu');
+  if (!btn || !menu) return;
+  function apri(si) { menu.hidden = !si; btn.setAttribute('aria-expanded', si); }
+  btn.addEventListener('click', function (e) { e.stopPropagation(); apri(menu.hidden); });
+  document.addEventListener('click', function (e) { if (!e.target.closest('.legal-float')) apri(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') apri(false); });
 })();
 
 // Loghi sparsi: ognuno galleggia con un suo tempo.

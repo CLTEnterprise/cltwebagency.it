@@ -58,6 +58,7 @@ h3 { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.
 .pill--light::before { background: var(--blu); }
 .pill--wa { background: var(--wa); color: var(--bianco); }
 .pill--wa::before { background: var(--wa-scuro); }
+.pill--ig { color: var(--bianco); background: radial-gradient(circle at 30% 107%, #FDF497 0%, #FDF497 5%, #FD5949 45%, #D6249F 60%, #285AEB 90%); }
 .ico { width: 22px; height: 22px; flex: none; }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; }
 
@@ -119,8 +120,15 @@ h3 { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.
 .service__list { display: grid; gap: 8px; align-content: start; }
 .service__list li { background: var(--bianco); border-radius: 14px; padding: 12px 16px; font-weight: 600; font-size: 16.5px; line-height: 1.35; }
 
-.price { margin-top: 16px; background: var(--ink); color: var(--bianco); border-radius: var(--r-l); padding: clamp(32px, 4vw, 48px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px 40px; }
-.price__title { font-size: clamp(28px, 3.4vw, 44px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; max-width: 22ch; }
+.price { margin-top: 16px; background: var(--ink); color: var(--bianco); border-radius: var(--r-l); padding: clamp(36px, 4.5vw, 64px); display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 28px 56px; overflow: hidden; }
+.price__title { display: grid; gap: 4px; }
+.price__from { font-size: clamp(20px, 1.8vw, 26px); font-weight: 700; letter-spacing: -0.01em; color: var(--bianco); }
+.price__num { font-size: clamp(88px, 11vw, 168px); font-weight: 800; letter-spacing: -0.06em; line-height: .85; color: var(--lime); }
+.price__text { font-size: clamp(17px, 1.4vw, 20px); color: #D7DBE2; max-width: 30ch; }
+.price__actions { display: grid; gap: 12px; }
+.pill--outline-light { background: transparent; color: var(--bianco); box-shadow: inset 0 0 0 2px var(--bianco); }
+.pill--outline-light::before { background: var(--bianco); }
+.pill--outline-light:hover, .pill--outline-light:focus-visible { color: var(--ink); }
 
 /* 3. Soluzioni AI: la scena blu notte */
 .ai { padding: 0 12px; }
@@ -142,7 +150,8 @@ h3 { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.
 
 /* 4. Leo */
 .split { display: grid; grid-template-columns: .8fr 1.2fr; gap: 64px; align-items: center; }
-.split__media { aspect-ratio: 1; border-radius: var(--r-l); overflow: hidden; background: var(--grigio); }
+.split__media { position: relative; aspect-ratio: 1; border-radius: var(--r-l); overflow: hidden; background: var(--grigio); }
+.ribbon { position: absolute; z-index: 1; top: 38px; left: -64px; width: 270px; rotate: -45deg; padding: 9px 0; text-align: center; background: var(--lime); color: var(--ink); font-size: 14px; font-weight: 800; }
 .split__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 6%; }
 .split__text { display: grid; gap: 24px; }
 .split__text p { color: var(--ink); font-size: 19px; max-width: 38rem; }
@@ -211,6 +220,17 @@ h3 { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.
 .wa-float.is-on { opacity: 1; scale: 1; pointer-events: auto; }
 .wa-float:hover { background: var(--wa-scuro); }
 
+/* Privacy e cookie flottante, sopra WhatsApp */
+.legal-float { position: fixed; right: 27px; bottom: 20px; z-index: 61; transition: bottom .45s var(--ease); }
+.wa-on .legal-float { bottom: 94px; }
+.legal-float__btn { width: 48px; height: 48px; border: 0; border-radius: 50%; display: grid; place-items: center; background: var(--notte); color: var(--bianco); cursor: pointer; box-shadow: 0 10px 24px -10px rgba(2,29,102,.6); transition: background-color .25s; }
+.legal-float__btn:hover, .legal-float__btn[aria-expanded="true"] { background: var(--blu); }
+.legal-float__btn svg { width: 22px; height: 22px; }
+.legal-float__menu { position: absolute; right: 0; bottom: 58px; display: grid; gap: 2px; min-width: 190px; padding: 8px; background: var(--bianco); border-radius: var(--r-m); box-shadow: 0 18px 40px -16px rgba(2,29,102,.4); }
+.legal-float__menu[hidden] { display: none; }
+.legal-float__menu a { padding: 10px 12px; border-radius: 10px; font-weight: 700; font-size: 15px; text-decoration: none; }
+.legal-float__menu a:hover { background: var(--chiaro); }
+
 /* Movimento: titoli parola per parola e ingressi a cascata (solo con JS attivo) */
 [data-words] .w { display: inline-block; }
 @media (prefers-reduced-motion: no-preference) {
@@ -238,6 +258,8 @@ h3 { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.
   .about__photo { max-width: 560px; }
   .footer__grid { grid-template-columns: 1fr 1fr; }
   .footer__brand { grid-column: 1 / -1; }
+  .price { grid-template-columns: auto 1fr; }
+  .price__actions { grid-column: 1 / -1; grid-template-columns: auto auto; justify-content: start; }
 }
 
 /* Telefono e tablet: menu a tendina */
@@ -260,6 +282,10 @@ h3 { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.
   .labs__logo { height: 88px; padding: 12px 18px; }
   .labs__logo img { height: 60px; }
   .form { padding: 22px; }
+  .price { grid-template-columns: 1fr; gap: 20px; }
+  .price__actions { grid-template-columns: 1fr; }
+  .legal-float { right: 23px; bottom: 16px; }
+  .wa-on .legal-float { bottom: 88px; }
   .footer__grid { grid-template-columns: 1fr; }
   .wa-float { right: 16px; bottom: 16px; }
 }
