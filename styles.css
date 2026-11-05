@@ -316,7 +316,8 @@ html body.wa-on .iubenda-tp-btn.iubenda-cs-preferences-link[data-tp-float][data-
   .labs__logo img { height: 60px; }
   .form { padding: 22px; }
   .price { grid-template-columns: 1fr; gap: 20px; }
-  .proj-track { grid-auto-columns: 82%; }
+  .proj-track { grid-auto-columns: 84%; padding-inline: 8%; scroll-padding-inline: 0; }
+  .proj { scroll-snap-align: center; }
   .marquee__tile { height: 88px; padding: 12px 18px; }
   .marquee__tile img { height: 62px; }
   .marquee__tile--full img { height: 88px; }
