@@ -87,6 +87,23 @@ document.querySelectorAll('[data-words]').forEach(function (el) {
   aggiorna();
 })();
 
+// Analytics: i contatti veri (WhatsApp, telefono, email, recensioni, form).
+(function () {
+  function invia(nome, dove) { if (typeof gtag === 'function') gtag('event', nome, { posizione: dove }); }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var h = a.getAttribute('href');
+    var dove = (a.closest('section, footer') || {}).id || (a.classList.contains('wa-float') ? 'flottante' : a.classList.contains('gr-float') ? 'flottante' : 'pagina');
+    if (h.indexOf('wa.me') > -1) invia('contatto_whatsapp', dove);
+    else if (h.indexOf('tel:') === 0) invia('contatto_telefono', dove);
+    else if (h.indexOf('mailto:') === 0) invia('contatto_email', dove);
+    else if (h.indexOf('g.page') > -1) invia('click_recensioni', dove);
+  });
+  var form = document.querySelector('form.form');
+  if (form) form.addEventListener('submit', function () { invia('generate_lead', 'form_contatti'); });
+})();
+
 // Loghi sparsi: ognuno galleggia con un suo tempo.
 document.querySelectorAll('.scatter--cloud .chip').forEach(function (c, i) { c.style.setProperty('--n', i); });
 
