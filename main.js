@@ -56,17 +56,6 @@ document.querySelectorAll('[data-words]').forEach(function (el) {
   }).observe(cta);
 })();
 
-// Privacy e cookie: piccolo menu che si apre dal bottone flottante.
-(function () {
-  var btn = document.querySelector('.legal-float__btn');
-  var menu = document.getElementById('legal-menu');
-  if (!btn || !menu) return;
-  function apri(si) { menu.hidden = !si; btn.setAttribute('aria-expanded', si); }
-  btn.addEventListener('click', function (e) { e.stopPropagation(); apri(menu.hidden); });
-  document.addEventListener('click', function (e) { if (!e.target.closest('.legal-float')) apri(false); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') apri(false); });
-})();
-
 // Loghi sparsi: ognuno galleggia con un suo tempo.
 document.querySelectorAll('.scatter--cloud .chip').forEach(function (c, i) { c.style.setProperty('--n', i); });
 
