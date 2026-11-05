@@ -259,6 +259,22 @@ h3 { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.
 .wa-float.is-on { opacity: 1; scale: 1; pointer-events: auto; }
 .wa-float:hover { background: var(--wa-scuro); }
 
+/* Recensioni Google, in basso a sinistra (compare insieme a WhatsApp) */
+.gr-float {
+  position: fixed; left: 20px; bottom: 20px; z-index: 60;
+  display: flex; align-items: center; gap: 10px; height: 54px; padding: 0 18px 0 12px;
+  border-radius: 999px; background: #fff; color: #1f1f1f; text-decoration: none;
+  font-weight: 700; font-size: 14px; line-height: 1.1;
+  box-shadow: 0 12px 28px -12px rgba(0,0,0,.35), 0 0 0 1px rgba(0,0,0,.06);
+  opacity: 0; scale: .6; pointer-events: none; transform-origin: left bottom;
+  transition: opacity .35s var(--ease), scale .45s var(--ease), box-shadow .25s;
+}
+.gr-float svg { width: 30px; height: 30px; flex: none; }
+.gr-float__txt { display: grid; gap: 2px; }
+.gr-float__stars { color: #FBBC04; font-size: 12px; letter-spacing: 1px; }
+.gr-float.is-on { opacity: 1; scale: 1; pointer-events: auto; }
+.gr-float:hover { box-shadow: 0 14px 30px -10px rgba(0,0,0,.4), 0 0 0 1px rgba(0,0,0,.08); }
+
 /* Bottone originale iubenda, spostato sopra WhatsApp */
 html body .iubenda-tp-btn.iubenda-cs-preferences-link[data-tp-float][data-tp-float="bottom-right"] { right: 16px !important; bottom: 4px !important; transition: bottom .45s var(--ease) !important; }
 html body.wa-on .iubenda-tp-btn.iubenda-cs-preferences-link[data-tp-float][data-tp-float="bottom-right"] { bottom: 78px !important; }
@@ -327,4 +343,5 @@ html body.wa-on .iubenda-tp-btn.iubenda-cs-preferences-link[data-tp-float][data-
   html body.wa-on .iubenda-tp-btn.iubenda-cs-preferences-link[data-tp-float][data-tp-float="bottom-right"] { bottom: 74px !important; }
   .footer__grid { grid-template-columns: 1fr; }
   .wa-float { right: 16px; bottom: 16px; }
+  .gr-float { left: 16px; bottom: 20px; height: 50px; padding: 0 14px 0 10px; font-size: 13px; }
 }

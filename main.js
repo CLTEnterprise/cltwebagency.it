@@ -48,7 +48,11 @@ document.querySelectorAll('[data-words]').forEach(function (el) {
   var cta = document.getElementById('hero-cta');
   var fab = document.querySelector('.wa-float');
   if (!cta || !fab) return;
-  function mostra(si) { fab.classList.toggle('is-on', si); fab.tabIndex = si ? 0 : -1; document.body.classList.toggle('wa-on', si); }
+  var gr = document.querySelector('.gr-float');
+  function mostra(si) {
+    fab.classList.toggle('is-on', si); fab.tabIndex = si ? 0 : -1; document.body.classList.toggle('wa-on', si);
+    if (gr) { gr.classList.toggle('is-on', si); gr.tabIndex = si ? 0 : -1; }
+  }
   if (!('IntersectionObserver' in window)) { mostra(true); return; }
   new IntersectionObserver(function (voci) {
     var v = voci[0];
